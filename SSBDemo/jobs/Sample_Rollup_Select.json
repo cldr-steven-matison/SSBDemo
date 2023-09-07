@@ -1,9 +1,9 @@
 {
-  "job_name" : "HourlyRollUp_Select",
+  "job_name" : "Sample_Rollup_Select",
   "api_endpoints" : [ ],
   "sql" : "/* This  SSB job will do an hourly roll up of IPDR data stream group by Mac Addr, every 5 seconds using GROUPING SETS operator */\n-- SELECT window_start, window_end, cmMacAddr, SUM(usOctets), SUM(dsOctets) \n-- FROM TABLE( TUMBLE(TABLE ipdr_table, DESCRIPTOR(eventTimestamp), INTERVAL '5' SECONDS)) \n-- GROUP BY window_start, window_end, GROUPING SETS ((cmMacAddr), ());\n\n/* This job will do an hourly roll up of IPDR data stream group by Mac Addr, every 30 second using ROLLUP operator */\nSELECT window_start, window_end, cmMacAddr, SUM(usOctets) AS sum1, SUM(dsOctets) AS sum2 \nFROM TABLE( TUMBLE(TABLE ipdr_table, DESCRIPTOR(eventTimestamp), INTERVAL '30' SECONDS)) \nGROUP BY window_start, window_end, ROLLUP(cmMacAddr);",
   "mv_config" : {
-    "name" : "HourlyRollUp_Select",
+    "name" : "Sample_Rollup_Select",
     "retention" : 300,
     "min_row_retention_count" : 0,
     "recreate" : false,

@@ -1,9 +1,9 @@
 {
-  "job_name" : "HourlyRollUp_HIVE",
+  "job_name" : "Sample_Rollup_HIVE",
   "api_endpoints" : [ ],
   "sql" : "/* hive create and insert example */\nDROP TABLE IF EXISTS `Hive`.`default`.`hourly_roleup`;\nCREATE TABLE IF NOT EXISTS `Hive`.`default`.`hourly_roleup` (\nwindow_start TIMESTAMP,\nwindow_end TIMESTAMP,\ncmMacAddr STRING,\nsum1 BIGINT,\nsum2 BIGINT )\nSTORED AS PARQUET\nTBLPROPERTIES ('transactional'='false',\n  'transactional_properties'='insert_only');\n\n/* INSERT INTO statement for Hive table hourly_roleup */\nINSERT INTO `Hive`.`default`.`hourly_roleup`\nSELECT window_start, window_end, cmMacAddr, SUM(usOctets) AS sum1, SUM(dsOctets) AS sum2 \nFROM TABLE( TUMBLE(TABLE ipdr_table, DESCRIPTOR(eventTimestamp), INTERVAL '30' SECONDS)) \nGROUP BY window_start, window_end, ROLLUP(cmMacAddr);",
   "mv_config" : {
-    "name" : "HourlyRollUp_HIVE",
+    "name" : "Sample_Rollup_HIVE",
     "retention" : 300,
     "min_row_retention_count" : 0,
     "recreate" : false,

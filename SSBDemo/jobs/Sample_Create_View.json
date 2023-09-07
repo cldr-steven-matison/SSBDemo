@@ -1,5 +1,5 @@
 {
-  "job_name" : "Create_IPDR_Summary_View",
+  "job_name" : "Sample_Create_View",
   "api_endpoints" : [ ],
   "sql" : "/*This SSB job will create a summary view of IPDR usage as tumbling window aggregation over the past 20 seconds upon data arrivale grouped by Mac Address */\nDROP VIEW IF EXISTS `ssb`.`IPDRStreaming`.`ipdr_summary`;\nCREATE VIEW `ssb`.`IPDRStreaming`.`ipdr_summary` AS\nSELECT window_start, window_end, cmMacAddr, SUM(usOctets) as upstream_oct, SUM(dsOctets)  as downstream_oct\nFROM TABLE(TUMBLE(TABLE ipdr_table, DESCRIPTOR(eventTimestamp), INTERVAL '20' SECONDS))\nWHERE dsScn = 'data'\nGROUP BY window_start, window_end, cmMacAddr",
   "mv_config" : {
