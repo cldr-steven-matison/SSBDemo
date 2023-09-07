@@ -1,5 +1,5 @@
 {
-  "job_name" : "IPDR_Summary_Select",
+  "job_name" : "Sample_Select",
   "api_endpoints" : [ ],
   "sql" : "/* This SSB job will get IPDR Summary Usage data from the view */\n/* I'm aggregating usOctets, dsOctets by Mac Address in 20 seconds windows and sending output to the filesystem*/\nSELECT * FROM ipdr_summary;",
   "mv_config" : {
