@@ -1,0 +1,11 @@
+{
+  "id" : "967a5e86bfc8404d8ce6d8654cb6ec77",
+  "name" : "Impala",
+  "type" : "catalog",
+  "properties" : {
+    "table_filters" : [ ],
+    "catalog_type" : "hive",
+    "default-database" : "test"
+  },
+  "custom_truststore" : false
+}

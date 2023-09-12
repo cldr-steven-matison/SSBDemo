@@ -1,9 +1,9 @@
 {
   "job_name" : "Sample_Select",
   "api_endpoints" : [ ],
-  "sql" : "/* This SSB job will get IPDR Summary Usage data from the view */\n/* I'm aggregating usOctets, dsOctets by Mac Address in 20 seconds windows and sending output to the filesystem*/\nSELECT * FROM ipdr_summary;",
+  "sql" : "/* This SSB Job will read the data from the Flink table and filter IPDR data stream based on the Service Class field */\nSELECT\nbatchId AS BATCH,\ndsScn AS SRVC_CLASS,\ncmMacAddr AS MAC_ADDRS,\nfromTime AS FROM_TIME,\ntoTime AS TO_TIME,\nFLOOR(CURRENT_TIMESTAMP TO HOUR) AS LAST_TMSTMP,\nregion AS REGION,\ndsPackets AS DWSTRM_PCKT,\nusPackets AS UPSTRM_PCKT\nFROM ipdr_raw\nWHERE dsScn = 'data'\n",
   "mv_config" : {
-    "name" : "IPDR_Summary_Select",
+    "name" : "IPDR_Simple_Select",
     "retention" : 300,
     "min_row_retention_count" : 0,
     "recreate" : false,
