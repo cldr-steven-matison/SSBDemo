@@ -5,6 +5,7 @@
   "properties" : {
     "table_filters" : [ ],
     "catalog_type" : "hive",
+    "hive-conf-dir" : "/etc/hive/conf",
     "default-database" : "test"
   },
   "custom_truststore" : false
