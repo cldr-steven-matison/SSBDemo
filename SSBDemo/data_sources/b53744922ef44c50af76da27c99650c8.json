@@ -5,7 +5,8 @@
   "properties" : {
     "brokers" : "base-01.lab12.pvc-ds-bc.athens.cloudera.com:9093,worker-01.lab12.pvc-ds-bc.athens.cloudera.com:9093,worker-02.lab12.pvc-ds-bc.athens.cloudera.com:9093",
     "protocol" : "sasl",
-    "mechanism" : "KERBEROS"
+    "mechanism" : "KERBEROS",
+    "ssl.truststore.location" : "/opt/cloudera/security/pki/truststore.jks"
   },
   "custom_truststore" : false
 }
