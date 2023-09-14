@@ -1,7 +1,7 @@
 {
   "job_name" : "Iceberg_Simple_Test",
   "api_endpoints" : [ ],
-  "sql" : "-- test basic create / insert / select !! This does not work\ndrop table if exists iceberg_test;\nCREATE TABLE iceberg_test (\n username STRING\n) \nPARTITIONED BY (name STRING)\nSTORED AS ICEBERG;\n\n\n\nINSERT INTO `Hive`.`default`.iceberg_test(name,username) VALUES('steven','test');\n\nselect * from `Hive`.`default`.iceberg_test;",
+  "sql" : "-- test basic create / insert / select !! This does not work in SSB\ndrop table if exists iceberg_test;\nCREATE TABLE iceberg_test (\n username STRING\n) \nPARTITIONED BY (name STRING)\nSTORED AS ICEBERG;\n\nINSERT INTO `Hive`.`default`.iceberg_test(name,username) VALUES('steven','test');\n\nselect * from `Hive`.`default`.iceberg_test;",
   "mv_config" : {
     "name" : "Iceberg_Simple_Test",
     "retention" : 300,

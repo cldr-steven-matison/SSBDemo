@@ -1,7 +1,7 @@
 {
   "job_name" : "Sample_Rollup_ICEBERG",
   "api_endpoints" : [ ],
-  "sql" : "/* if the table is created, hive does not see rows cols */\n\nCREATE TABLE iceberg_hourly_roleup (\nwindow_start TIMESTAMP,\nwindow_end TIMESTAMP,\ncmMacAddr STRING,\nsum1 BIGINT,\nsum2 BIGINT\n) WITH (\n'connector' = 'iceberg',\n'catalog-database' = 'default',\n'catalog-type' = 'hive',\n'catalog-name' = 'Hive',\n'catalog-table' = 'iceberg_hourly_roleup',\n'ssb-hive-catalog' = 'Hive',\n'format-version'='2', \n'engine.hive.enabled' = 'true',\n'write.upsert.enabled'='true'\n);",
+  "sql" : "-- This Works, need to test insert/select\nCREATE TABLE iceberg_hourly_roleup (\nwindow_start TIMESTAMP,\nwindow_end TIMESTAMP,\ncmMacAddr STRING,\nsum1 BIGINT,\nsum2 BIGINT\n) WITH (\n'connector' = 'iceberg',\n'catalog-database' = 'default',\n'catalog-type' = 'hive',\n'catalog-name' = 'Hive',\n'catalog-table' = 'iceberg_hourly_roleup',\n'ssb-hive-catalog' = 'Hive',\n'format-version'='2', \n'engine.hive.enabled' = 'true',\n'write.upsert.enabled'='true'\n);",
   "mv_config" : {
     "name" : "Sample_Rollup_ICEBERG",
     "retention" : 300,
