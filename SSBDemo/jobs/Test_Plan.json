@@ -1,8 +1,9 @@
 {
-  "job_name" : "Select_Atlast_Entities",
+  "job_name" : "Test_Plan",
   "api_endpoints" : [ ],
+  "sql" : "-- This works\n\nCREATE TABLE `ssb`.`ssb_default`.`exampleeee`(`queryid` int, itemid string ) WITH ( 'connector' = 'iceberg', 'catalog-database' = 'default', 'catalog-type' = 'hive', 'catalog-name' = 'hive-catalog', 'engine.hive.enabled' = 'true');\n\nInsert into `ssb`.`ssb_default`.`exampleeee`(queryid,itemid) VALUES(1,'1');\n\nselect * FROM `ssb`.`ssb_default`.`exampleeee`;",
   "mv_config" : {
-    "name" : "Select_Atlast_Entities",
+    "name" : "Test_Plan",
     "retention" : 300,
     "min_row_retention_count" : 0,
     "recreate" : false,

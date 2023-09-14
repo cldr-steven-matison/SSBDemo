@@ -1,9 +1,9 @@
 {
-  "job_name" : "Sample_Create_Table",
+  "job_name" : "Select_Atlas_Entities",
   "api_endpoints" : [ ],
-  "sql" : "/* This works */\nDROP TABLE IF EXISTS `ssb`.`ssb_default`.`ipdr_table`;\nCREATE TABLE `ssb`.`ssb_default`.`ipdr_table` (\n`batchId` VARCHAR(2147483647),\n`cmIp` ROW<`v4` VARCHAR(2147483647)>,\n`cmMacAddr` VARCHAR(2147483647),\n`cmtsHostName` VARCHAR(2147483647),\n`cmtsIp` ROW<`v4` VARCHAR(2147483647), `v6` VARCHAR(2147483647)>,\n`dsChSet` ARRAY<BIGINT>,\n`dsIdentifier` BIGINT,\n`dsOctets` BIGINT,\n`dsPackets` BIGINT,\n`dsScn` VARCHAR(2147483647),\n`dsTimeActive` BIGINT,\n`fromTime` TIMESTAMP(3),\n`mdIfIndex` BIGINT,\n`mdIfName` VARCHAR(2147483647),\n`qosVersion` BIGINT,\n`region` VARCHAR(2147483647),\n`timeZone` VARCHAR(2147483647),\n`toTime` TIMESTAMP(3),\n`usChSet` ARRAY<BIGINT>,\n`usIdentifier` BIGINT,\n`usOctets` BIGINT,\n`usPackets` BIGINT,\n`usScn` VARCHAR(2147483647),\n`usTimeActive` BIGINT,\n`v` BIGINT,\n`eventTimestamp` TIMESTAMP(3) WITH LOCAL TIME ZONE METADATA FROM 'timestamp',\nWATERMARK FOR `eventTimestamp` AS `eventTimestamp` - INTERVAL '3' SECOND\n--WATERMARK FOR `toTime` AS `toTime` - INTERVAL '15' SECOND\n) WITH (\n'properties.request.timeout.ms' = '120000',\n'format' = 'json',\n'properties.bootstrap.servers' = 'base1-01.lab01.pvc-ds-bc.athens.cloudera.com:9093,base2-01.lab01.pvc-ds-bc.athens.cloudera.com:9093',\n'connector' = 'kafka',\n'properties.transaction.timeout.ms' = '900000',\n'topic' = 'ipdr-raw',\n'scan.startup.mode' = 'earliest-offset',\n'properties.auto.offset.reset' = 'earliest'\n);\n\nDESCRIBE `ssb`.`ssb_default`.`ipdr_table`;\n",
+  "sql" : "-- This does not work \n-- [ERROR] Job execution failed: Could not start Flink session for user: stevenmatison\nselect * from Atlas_Entities;",
   "mv_config" : {
-    "name" : "Sample_Create_Table",
+    "name" : "Select_Atlas_Entities",
     "retention" : 300,
     "min_row_retention_count" : 0,
     "recreate" : false,
