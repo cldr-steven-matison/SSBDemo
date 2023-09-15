@@ -1,9 +1,9 @@
 {
-  "job_name" : "Sample_Select",
+  "job_name" : "APIData_Routes_Kafka_To_ICEBERG",
   "api_endpoints" : [ ],
-  "sql" : "---  this doesnt work hive error with deserializer\nselect * from `Hive`.`demo_db`.`airlines`;\n\nDESCRIBE `Hive`.`demo_db`.`airlines`;\n\n/* This SSB Job will read the data from the Flink table and filter IPDR data stream based on the Service Class field */\nSELECT\nbatchId AS BATCH,\ndsScn AS SRVC_CLASS,\ncmMacAddr AS MAC_ADDRS,\nfromTime AS FROM_TIME,\ntoTime AS TO_TIME,\nFLOOR(CURRENT_TIMESTAMP TO HOUR) AS LAST_TMSTMP,\nregion AS REGION,\ndsPackets AS DWSTRM_PCKT,\nusPackets AS UPSTRM_PCKT\nFROM ipdr_raw\nWHERE dsScn = 'data'\n",
+  "sql" : "SELECT * from Routes;",
   "mv_config" : {
-    "name" : "Sample_Select",
+    "name" : "APIData_Routes_Kafka_To_ICEBERG",
     "retention" : 300,
     "min_row_retention_count" : 0,
     "recreate" : false,
